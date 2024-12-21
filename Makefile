@@ -8,16 +8,18 @@ MLXDIR := minilibx-linux
 MLX := $(MLXDIR)/libmlx.a
 ifeq ($(UNAME), Linux)
 CFLAGS := -Wall -Wextra -Werror -I$(LFTDIR) -I$(MLXDIR)
-LDFLAGS := -L$(LFTDIR) -L$(MLXDIR)
-LDLIBS := -lXext -lX11
+LDLIBS := -lXext -lX11 
 else
 CFLAGS := -Wall -Wextra -Werror -I$(LFTDIR) -I$(MLXDIR) -I/usr/X11/include
-LDFLAGS := -L/usr/X11/lib
 LDLIBS := -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
 $(NAME): $(LFT) $(MLX) $(OBJECT)
+ifeq ($(UNAME), Linux)
+	$(LINK.o) $(OBJECT) $(LDLIBS) $(LFT) $(MLX)  -o $@
+else
 	$(LINK.o) $^ $(LDLIBS) -o $@
+endif
 
 $(LFT): | $(LFTDIR)
 	$(MAKE) -C $(LFTDIR)
