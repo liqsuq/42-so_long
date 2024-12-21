@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:03:15 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 15:28:43 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/21 16:46:24 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	exit_app(t_app *app);
 void	exit_on_syserror(t_app *app, char *message);
 void	exit_on_error(t_app *app, char *message, ...);
 void	load_image(t_app *app, t_img *img, char *path);
-void	draw_image(t_app *app, t_img *img, int x, int y);
-void	draw_tile(t_app *app, int x, int y);
 int		draw_all(t_app *app);
 void	load_map(t_app *app, int fd);
 void	check_map(t_app *app);

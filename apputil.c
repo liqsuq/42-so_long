@@ -6,29 +6,12 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:48:20 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 15:33:53 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/21 16:45:43 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	exit_on_syserror(t_app *app, char *message)
-{
-	perror(message);
-	exit_app(app);
-	exit(EXIT_FAILURE);
-}
-
-void	exit_on_error(t_app *app, char *message, ...)
-{
-	va_list	args;
-
-	va_start(args, message);
-	ft_vdprintf(STDERR_FILENO, message, args);
-	va_end(args);
-	exit_app(app);
-	exit(EXIT_FAILURE);
-}
 
 void	init_app(t_app *app)
 {
@@ -55,4 +38,22 @@ void	exit_app(t_app *app)
 	mlx_destroy_image(app->mlx, app->exit.img);
 	mlx_destroy_image(app->mlx, app->player.img);
 	mlx_destroy_window(app->mlx, app->win);
+}
+
+void	exit_on_syserror(t_app *app, char *message)
+{
+	perror(message);
+	exit_app(app);
+	exit(EXIT_FAILURE);
+}
+
+void	exit_on_error(t_app *app, char *message, ...)
+{
+	va_list	args;
+
+	va_start(args, message);
+	ft_vdprintf(STDERR_FILENO, message, args);
+	va_end(args);
+	exit_app(app);
+	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:20:57 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 15:35:29 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/21 16:44:12 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	find_paths(t_app *app)
 			{
 				map = ft_strjoin("", app->map);
 				if (map == NULL)
-					exit_on_syserror(app, "[ERR] ft_strjoin() in find_paths()");
+					exit_on_syserror(app, "Error\nft_strjoin()");
 				retval = find_path(app, map, j, i);
 				free(map);
 				if (retval == 1)
-					exit_on_error(app, "[ERR] map doesn't have valid path\n");
+					exit_on_error(app, "Error\nmap doesn't have valid path\n");
 			}
 		}
 	}
