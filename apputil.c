@@ -6,12 +6,11 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:48:20 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 16:45:43 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/22 15:03:02 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	init_app(t_app *app)
 {

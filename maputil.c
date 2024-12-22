@@ -6,12 +6,11 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:25:08 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/22 15:02:12 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/22 15:02:58 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 static char	*load_line(t_app *app, int fd)
 {
