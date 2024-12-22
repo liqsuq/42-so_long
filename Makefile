@@ -11,6 +11,7 @@ CFLAGS := -Wall -Wextra -Werror -I$(LFTDIR) -I$(MLXDIR)
 LDLIBS := -lXext -lX11 
 else
 CFLAGS := -Wall -Wextra -Werror -I$(LFTDIR) -I$(MLXDIR) -I/usr/X11/include
+LDFLAGS := -L/usr/X11/lib
 LDLIBS := -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
