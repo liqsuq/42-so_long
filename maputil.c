@@ -6,63 +6,67 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:25:08 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 15:29:35 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/22 15:02:12 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*load_line(int fd)
+
+static char	*load_line(t_app *app, int fd)
 {
-	char	*line;
+	static int	is_first = 1;
+	char		*line;
 
 	line = get_next_line(fd);
-	if (line != NULL && line[ft_strlen(line) - 1] == '\n')
-		line[ft_strlen(line) - 1] = '\0';
+	if (line != NULL)
+	{
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
+		if (is_first)
+		{
+			is_first = 0;
+			app->width = ft_strlen(line);
+			app->height = 1;
+		}
+		else
+		{
+			if (app->width != (int)ft_strlen(line))
+			{
+				free(line);
+				exit_on_error(app, "Error\nmap is not rectangle\n");
+			}
+			app->height++;
+		}
+	}
 	return (line);
 }
 
 void	load_map(t_app *app, int fd)
 {
 	char	*line;
+	char	*tmp;
 
-	line = load_line(fd);
-	app->width = ft_strlen(line);
-	app->height = 1;
-	app->map = line;
-	line = load_line(fd);
+	app->map = ft_strdup("");
+	if (app->map == NULL)
+	{
+		perror("Error\nft_strdup()");
+		exit(EXIT_FAILURE);
+	}
+	line = load_line(app, fd);
 	while (line != NULL)
 	{
-		if (app->width != (int)ft_strlen(line))
-		{
-			free(line);
-			ft_dprintf(STDERR_FILENO, "Error\nmap is not rectangle\n");
-			exit(EXIT_FAILURE);
-		}
-		app->height++;
-		app->map = ft_strjoin(app->map, line);
+		tmp = ft_strjoin(app->map, line);
 		free(line);
-		if (app->map == NULL)
+		if (tmp == NULL)
 		{
 			perror("Error\nft_strjoin()");
 			exit(EXIT_FAILURE);
 		}
-		line = load_line(fd);
+		free(app->map);
+		app->map = tmp;
+		line = load_line(app, fd);
 	}
-}
-
-static int	is_none_or_duplicate(char *map, char c)
-{
-	char	*ptr1;
-	char	*ptr2;
-
-	if (map == NULL)
-		return (0);
-	ptr1 = ft_strchr(map, c);
-	ptr2 = ft_strrchr(map, c);
-	if (ptr1 == NULL || ptr2 == NULL || ptr1 != ptr2)
-		return (1);
-	return (0);
 }
 
 void	check_map(t_app *app)
@@ -83,10 +87,11 @@ void	check_map(t_app *app)
 					exit_on_error(app, "Error\nmap isn't be closed\n");
 		}
 	}
-	if (is_none_or_duplicate(app->map, 'P'))
-		exit_on_error(app, "Error\nplayer is not found or duplicate\n");
-	if (is_none_or_duplicate(app->map, 'E'))
-		exit_on_error(app, "Error\nexit is not found or duplicate\n");
+	if (ft_strchr(app->map, 'P') == NULL || ft_strchr(app->map, 'C') == NULL)
+		exit_on_error(app, "Error\nplayer or/and exit are not found\n");
+	if (ft_strchr(app->map, 'P') != ft_strrchr(app->map, 'P')
+		|| ft_strchr(app->map, 'C') != ft_strrchr(app->map, 'C'))
+		exit_on_error(app, "Error\nplayer of/and exit are duplicate\n");
 }
 
 void	parse_map(t_app *app)
