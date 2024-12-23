@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:25:08 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 12:56:09 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 13:59:09 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void	check_map(t_app *app)
 					exit_on_error(app, "Error\nmap isn't be closed\n");
 		}
 	}
-	if (ft_strchr(app->map, 'P') == NULL || ft_strchr(app->map, 'C') == NULL)
+	if (ft_strchr(app->map, 'P') == NULL || ft_strchr(app->map, 'E') == NULL)
 		exit_on_error(app, "Error\nplayer or/and exit are not found\n");
 	if (ft_strchr(app->map, 'P') != ft_strrchr(app->map, 'P')
-		|| ft_strchr(app->map, 'C') != ft_strrchr(app->map, 'C'))
+		|| ft_strchr(app->map, 'E') != ft_strrchr(app->map, 'E'))
 		exit_on_error(app, "Error\nplayer of/and exit are duplicate\n");
 }
 
