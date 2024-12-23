@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:03:15 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 13:26:11 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:15:15 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <X11/keysym.h>
 # include "libft.h"
 
+# define APP "so_long"
 # define SQ 32
 # define PATH_EMPTY "textures/umi.xpm"
 # define PATH_WALL "textures/same.xpm"
@@ -32,10 +33,6 @@
 # define PATH_EXIT "textures/rocket.xpm"
 # define PATH_PLAYER "textures/iruka.xpm"
 # define INFO "[INFO] "
-
-# define RESET_FLAG 0b0000
-# define EXIST_PLAYER 0b0001
-# define EXIST_EXIT 0b0010
 
 typedef struct s_img
 {
