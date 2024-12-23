@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:48:20 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/22 15:03:02 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 13:39:36 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_app(t_app *app)
 	load_image(app, &app->empty, PATH_EMPTY);
 	load_image(app, &app->wall, PATH_WALL);
 	load_image(app, &app->item, PATH_ITEM);
-	load_image(app, &app->exit, PATH_EXIT1);
+	load_image(app, &app->exit, PATH_EXIT);
 	load_image(app, &app->player, PATH_PLAYER);
 }
 

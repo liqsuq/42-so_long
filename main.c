@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:03:51 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 15:31:28 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 13:41:24 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,31 @@ static int	is_move_key(int keycode)
 
 void	control(t_app *app, int x, int y)
 {
-	if (app->map[app->width * y + x] != '1')
+	if (app->map[app->width * y + x] == '1')
+		return ;
+	app->pos_x = x;
+	app->pos_y = y;
+	ft_printf(INFO"num_move: %d\n", ++app->num_move);
+	if (app->map[app->width * y + x] == 'C')
 	{
-		app->pos_x = x;
-		app->pos_y = y;
-		app->num_move++;
-		ft_printf(INFO"num_move: %d\n", app->num_move);
-		if (app->map[app->width * y + x] == 'C')
-		{
-			app->num_item--;
-			app->map[app->width * y + x] = '0';
-			if (app->num_item > 0)
-				ft_printf(INFO"yummy fish! more %d to go!\n", app->num_item);
-			else
-				load_image(app, &app->exit, PATH_EXIT2);
-		}
-		if (app->num_item == 0 && app->map[app->width * y + x] == 'E')
+		app->num_item--;
+		app->map[app->width * y + x] = '0';
+		if (app->num_item <= 0)
+			ft_printf(INFO"yummy fish! now go to the exit!\n");
+		else
+			ft_printf(INFO"yummy fish! more %d to eat!\n", app->num_item);
+	}
+	if (app->map[app->width * y + x] == 'E')
+	{
+		if (app->num_item == 0)
 		{
 			ft_printf(INFO"So Long, and Thanks for All the Fish...\n");
 			exit_app(app);
 			exit(EXIT_SUCCESS);
 		}
-		draw_all(app);
+		ft_printf(INFO"fishes are not extinct yet! eat 'em all!\n");
 	}
+	draw_all(app);
 }
 
 static int	key_hook(int keycode, t_app *app)

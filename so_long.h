@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:03:15 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 16:46:24 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 13:26:11 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
 # define PATH_EMPTY "textures/umi.xpm"
 # define PATH_WALL "textures/same.xpm"
 # define PATH_ITEM "textures/sakana.xpm"
-# define PATH_EXIT1 "textures/rocket1.xpm"
-# define PATH_EXIT2 "textures/rocket2.xpm"
+# define PATH_EXIT "textures/rocket.xpm"
 # define PATH_PLAYER "textures/iruka.xpm"
 # define INFO "[INFO] "
 
