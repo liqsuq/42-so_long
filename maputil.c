@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:25:08 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/22 15:02:58 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 12:56:09 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ static char	*load_line(t_app *app, int fd)
 		{
 			is_first = 0;
 			app->width = ft_strlen(line);
-			app->height = 1;
+			app->height = 0;
 		}
-		else
+		else if (app->width != (int)ft_strlen(line))
 		{
-			if (app->width != (int)ft_strlen(line))
-			{
-				free(line);
-				exit_on_error(app, "Error\nmap is not rectangle\n");
-			}
-			app->height++;
+			free(line);
+			free(app->map);
+			ft_dprintf(STDERR_FILENO, "Error\nmap is not rectangle\n");
+			exit(EXIT_FAILURE);
 		}
+		app->height++;
 	}
 	return (line);
 }
