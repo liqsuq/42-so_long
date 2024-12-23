@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:48:20 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 13:39:36 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:20:50 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,18 @@
 void	init_app(t_app *app)
 {
 	app->mlx = mlx_init();
-	app->win = mlx_new_window(
-			app->mlx, app->width * SQ, app->height * SQ, "so_long");
+	if (app->mlx == NULL)
+	{
+		ft_dprintf(STDERR_FILENO, "Error\nmlx_init() failed\n");
+		exit(EXIT_FAILURE);
+	}
+	app->win = mlx_new_window(app->mlx, app->width * SQ, app->height * SQ, APP);
+	if (app->win == NULL)
+	{
+		free(app->mlx);
+		ft_dprintf(STDERR_FILENO, "Error\nmlx_new_window() failed\n");
+		exit(EXIT_FAILURE);
+	}
 	app->pos_x = 0;
 	app->pos_y = 0;
 	app->num_item = 0;
