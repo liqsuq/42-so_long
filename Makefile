@@ -37,8 +37,8 @@ $(MLXDIR):
 all: $(NAME)
 
 clean:
-	$(MAKE) -C $(LFTDIR) clean
-	$(MAKE) -C $(MLXDIR) clean
+	-$(MAKE) -C $(LFTDIR) clean
+	-$(MAKE) -C $(MLXDIR) clean
 	$(RM) $(OBJECT)
 
 fclean: clean
