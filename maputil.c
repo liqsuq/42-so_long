@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:25:08 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 13:59:09 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:19:38 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	load_map(t_app *app, int fd)
 	while (line != NULL)
 	{
 		tmp = ft_strjoin(app->map, line);
+		free(app->map);
 		free(line);
 		if (tmp == NULL)
 		{
 			perror("Error\nft_strjoin()");
 			exit(EXIT_FAILURE);
 		}
-		free(app->map);
 		app->map = tmp;
 		line = load_line(app, fd);
 	}
