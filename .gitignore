@@ -52,6 +52,6 @@ Mkfile.old
 dkms.conf
 
 so_long
-libft
-minilibx-linux
+libft/
+minilibx-linux/
 so_long_tester/
