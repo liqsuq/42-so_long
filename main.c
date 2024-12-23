@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:03:51 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 13:41:24 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:32:10 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,10 @@ int	main(int argc, char **argv)
 	t_app	app;
 
 	if (argc != 2)
-	{
-		ft_printf("Error\nUsage: ./so_long map.ber\n");
-		exit (EXIT_FAILURE);
-	}
+		exit_on_initerror("Error\nUsage: ./so_long map.ber\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-	{
-		perror("Error\nopen()");
-		exit (EXIT_FAILURE);
-	}
+		exit_on_initerror("Error\nopen() failed\n");
 	load_map(&app, fd);
 	close(fd);
 	init_app(&app);

@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:48:20 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 14:20:50 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:33:38 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,12 @@ void	init_app(t_app *app)
 {
 	app->mlx = mlx_init();
 	if (app->mlx == NULL)
-	{
-		ft_dprintf(STDERR_FILENO, "Error\nmlx_init() failed\n");
-		exit(EXIT_FAILURE);
-	}
+		exit_on_initerror("Error\nmlx_init() failed\n");
 	app->win = mlx_new_window(app->mlx, app->width * SQ, app->height * SQ, APP);
 	if (app->win == NULL)
 	{
 		free(app->mlx);
-		ft_dprintf(STDERR_FILENO, "Error\nmlx_new_window() failed\n");
-		exit(EXIT_FAILURE);
+		exit_on_initerror("Error\nmlx_new_window() failed\n");
 	}
 	app->pos_x = 0;
 	app->pos_y = 0;
@@ -64,5 +60,15 @@ void	exit_on_error(t_app *app, char *message, ...)
 	ft_vdprintf(STDERR_FILENO, message, args);
 	va_end(args);
 	exit_app(app);
+	exit(EXIT_FAILURE);
+}
+
+void	exit_on_initerror(char *message, ...)
+{
+	va_list	args;
+
+	va_start(args, message);
+	ft_vdprintf(STDERR_FILENO, message, args);
+	va_end(args);
 	exit(EXIT_FAILURE);
 }

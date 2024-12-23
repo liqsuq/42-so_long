@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:25:08 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 14:19:38 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:30:32 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static char	*load_line(t_app *app, int fd)
 		{
 			free(line);
 			free(app->map);
-			ft_dprintf(STDERR_FILENO, "Error\nmap is not rectangle\n");
-			exit(EXIT_FAILURE);
+			exit_on_initerror("Error\nmap is not rectangle\n");
 		}
 		app->height++;
 	}
@@ -47,10 +46,7 @@ void	load_map(t_app *app, int fd)
 
 	app->map = ft_strdup("");
 	if (app->map == NULL)
-	{
-		perror("Error\nft_strdup()");
-		exit(EXIT_FAILURE);
-	}
+		exit_on_initerror("Error\nft_strdup() failed\n");
 	line = load_line(app, fd);
 	while (line != NULL)
 	{
@@ -58,10 +54,7 @@ void	load_map(t_app *app, int fd)
 		free(app->map);
 		free(line);
 		if (tmp == NULL)
-		{
-			perror("Error\nft_strjoin()");
-			exit(EXIT_FAILURE);
-		}
+			exit_on_initerror("Error\nft_strjoin() failed\n");
 		app->map = tmp;
 		line = load_line(app, fd);
 	}
