@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:25:08 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 14:38:44 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:51:58 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ void	load_map(t_app *app, int fd)
 		exit_on_initerror("Error\nft_strdup() failed\n");
 	line = load_line(app, fd);
 	if (line == NULL || ft_strlen(line) == 0)
-		exit_on_initerror("Error\nmap is not rectangle\n");
+	{
+		free(app->map);
+		if (line != NULL)
+			free(line);
+		exit_on_initerror("Error\nempty map\n");
+	}
 	while (line != NULL)
 	{
 		tmp = ft_strjoin(app->map, line);

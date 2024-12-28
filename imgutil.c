@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:08:41 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/21 16:45:12 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:35:59 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ void	load_image(t_app *app, t_img *img, char *path)
 {
 	img->img = mlx_xpm_file_to_image(app->mlx, path, &img->width, &img->height);
 	if (img->img == NULL)
-	{
-		perror("Error\nload_image()");
-		exit (EXIT_FAILURE);
-	}
+		exit_on_syserror(app, "Error\nload_image()\n");
 }
 
 static void	draw_image(t_app *app, t_img *img, int x, int y)
