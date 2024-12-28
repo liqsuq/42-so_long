@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:03:15 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/23 16:54:43 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:32:41 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <string.h>
 # include <errno.h>
 # include <unistd.h>
+# include <stdarg.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include <X11/X.h>
