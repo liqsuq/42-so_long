@@ -17,7 +17,7 @@ endif
 
 $(NAME): $(LFT) $(MLX) $(OBJECT)
 ifeq ($(UNAME), Linux)
-	$(LINK.o) $(OBJECT) $(LDLIBS) $(LFT) $(MLX)  -o $@
+	$(LINK.o) $(OBJECT) $(LFT) $(MLX) $(LDLIBS) -o $@
 else
 	$(LINK.o) $^ $(LDLIBS) -o $@
 endif
